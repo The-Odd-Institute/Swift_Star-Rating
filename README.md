@@ -1,31 +1,82 @@
-## Star-Rating-iOS-App
+# Swift Star Rating Component
 
+A reusable 5-star rating component for iOS applications with touch-based interaction and float value return.
 
-This is a 5 star rating app for iOS that offers a simple interface and implementation with float return and setup. 
+## Overview
 
-How to use: 
-Add RatingCustomView to your project. 
-You'd also need the starRatingMask.png from Assets.xcassets
-Then in your view controller do:
+This project provides an interactive star rating view that allows users to rate items by touching and dragging across the rating bar. Returns precise float values with configurable decimal precision.
 
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        
-        self.view.layoutIfNeeded();
-        self.view.layoutSubviews();
-        
-        let ratingContentView = RatingCustomView (frame: ratingContainer.bounds);
-        ratingContainer.addSubview(ratingContentView );
-        ratingContentView.delegate = self;
-    }
-    
-    // ratingContainer is the view where the rating should stick to.
-    // the delegation is only there to show you the actual label change.
-    // the actual rate value can be read from:
-    ratingContentView.rate
-    
-    The rating is truncated into a single decimal point (i.e. 1.1). You can change that in RatingCustomView in function called rateAt. Change the 50 to 500 and 10 to 100 to get 2 decimal points and so on and so forth. 
+## Technologies
 
+- **Language**: Swift
+- **Framework**: UIKit
+- **Platform**: iOS
 
-![alt text](https://github.com/AmirJahan/Swift_Star-Rating/blob/master/Swift_Star-Rating.gif?raw=true)
+## Features
+
+- Interactive touch-based rating control
+- Visual feedback with star mask overlay
+- Delegate pattern for rating updates
+- Float return value (1 decimal point precision)
+- Read-only display mode available
+- Easy integration into any project
+
+## Usage
+
+### Integration
+
+1. Add `RatingCustomView.swift` to your project
+2. Include `starRatingMask.png` from Assets.xcassets
+
+### Implementation
+
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+
+    view.layoutIfNeeded()
+    view.layoutSubviews()
+
+    let ratingView = RatingCustomView(frame: ratingContainer.bounds)
+    ratingContainer.addSubview(ratingView)
+    ratingView.delegate = self
+}
+
+// Access the rating value
+let currentRating = ratingView.rate
+```
+
+### Delegate Protocol
+
+```swift
+protocol PostRateDelegate {
+    func postRate(rate: Float)
+}
+```
+
+### Customize Precision
+
+In `RatingCustomView`, modify the `rateAt` function:
+- Default: 1 decimal point (values 50 and 10)
+- 2 decimals: Change 50 to 500, 10 to 100
+
+## Project Structure
+
+```
+Star Rating App/
+├── RatingCustomView.swift    # Main rating component
+├── PostRateProtocol.swift    # Delegate protocol
+├── ViewController.swift      # Example usage
+└── AppDelegate.swift
+```
+
+## Requirements
+
+- Xcode
+- iOS 10.0+
+
+## License
+
+MIT License (2018)
+
+![Star Rating Demo](https://github.com/AmirJahan/Swift_Star-Rating/blob/master/Swift_Star-Rating.gif?raw=true)
