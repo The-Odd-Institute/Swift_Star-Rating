@@ -1,4 +1,3 @@
-protocol PostRateDelegate
-{
-    func rateIs(sentRate: Float);
+protocol PostRateDelegate {
+    func rateIs(sentRate: Float)
 }
